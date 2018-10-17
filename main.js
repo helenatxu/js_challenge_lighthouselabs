@@ -71,3 +71,12 @@ function lightColumn(columnNumber) {
   }
   return result;
 }
+
+const findAll = (obstacle,list) => {
+  GRID.forEach((e,f) => e.forEach((h,i) => { if(h===obstacle) list.push(COLUMNS[i]+(f+1)) }));
+  return list;
+};
+const allRocks = () => findAll('^', []);
+const allCurrents = () => findAll('~', []);
+
+console.log("allRocks()", allRocks()); 
