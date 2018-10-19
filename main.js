@@ -80,9 +80,15 @@ const findAll = (obstacle,list) => {
 const firstRock = () => {
   return findAll('^', [])[0];
 };
+
+const firstCurrent = () => {
+  return findAll('~', [])[0];
+};
+
 const allRocks = () => findAll('^', []);
 const allCurrents = () => findAll('~', []);
 const allShips = () => findAll('v', []);
 
 console.log("allRocks()", allRocks()); 
 console.log("firstRock()", firstRock()); 
+console.log("firstCurrent()", firstCurrent()); 
