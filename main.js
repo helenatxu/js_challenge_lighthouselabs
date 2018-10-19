@@ -78,11 +78,11 @@ const findAll = (obstacle,list) => {
 };
 
 const firstRock = () => {
-  GRID.forEach((e,f) => e.forEach((h,i) => { if(h===obstacle) list.push(COLUMNS[i]+(f+1)) }));
-  return list;
+  return findAll('^', [])[0];
 };
 const allRocks = () => findAll('^', []);
 const allCurrents = () => findAll('~', []);
 const allShips = () => findAll('v', []);
 
-console.log("allShips()", allShips()); 
+console.log("allRocks()", allRocks()); 
+console.log("firstRock()", firstRock()); 
