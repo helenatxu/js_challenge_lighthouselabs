@@ -85,6 +85,12 @@ const firstCurrent = () => {
   return findAll('~', [])[0];
 };
 
+function shipReport() {
+  var shipsMap = findAll('v', []);
+  var report= [shipsMap[0], shipsMap[shipsMap.length-1]]
+  return report
+}
+
 const allRocks = () => findAll('^', []);
 const allCurrents = () => findAll('~', []);
 const allShips = () => findAll('v', []);
@@ -92,3 +98,4 @@ const allShips = () => findAll('v', []);
 console.log("allRocks()", allRocks()); 
 console.log("firstRock()", firstRock()); 
 console.log("firstCurrent()", firstCurrent()); 
+console.log("shipReport()", shipReport()); 
