@@ -91,11 +91,20 @@ function shipReport() {
   return report
 }
 
+function howDangerous(coordinate) {
+  if (isRock(coordinate)) return 100;
+    else if (isCurrent(coordinate)) return 50;
+      else return 0;
+}
+
+function percentageReport() {
+  var rockPercentage = (findAll('^', []).length / totalCells())*100;
+  var currentPercentage = (findAll('~', []).length / totalCells())*100;
+  return [rockPercentage.toFixed(2), currentPercentage.toFixed(2)];
+}
+
 const allRocks = () => findAll('^', []);
 const allCurrents = () => findAll('~', []);
 const allShips = () => findAll('v', []);
 
-console.log("allRocks()", allRocks()); 
-console.log("firstRock()", firstRock()); 
-console.log("firstCurrent()", firstCurrent()); 
-console.log("shipReport()", shipReport()); 
+console.log("percentageReport()", percentageReport()); 
