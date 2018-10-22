@@ -71,3 +71,40 @@ function lightColumn(columnNumber) {
   }
   return result;
 }
+
+const findAll = (obstacle,list) => {
+  GRID.forEach((e,f) => e.forEach((h,i) => { if(h===obstacle) list.push(COLUMNS[i]+(f+1)) }));
+  return list;
+};
+
+const firstRock = () => {
+  return findAll('^', [])[0];
+};
+
+const firstCurrent = () => {
+  return findAll('~', [])[0];
+};
+
+function shipReport() {
+  var shipsMap = findAll('v', []);
+  var report= [shipsMap[0], shipsMap[shipsMap.length-1]]
+  return report
+}
+
+function howDangerous(coordinate) {
+  if (isRock(coordinate)) return 100;
+  else if (isCurrent(coordinate)) return 50;
+  else return 0;
+}
+
+function percentageReport() {
+  var rockPercentage = (findAll('^', []).length / totalCells())*100;
+  var currentPercentage = (findAll('~', []).length / totalCells())*100;
+  return [rockPercentage.toFixed(2), currentPercentage.toFixed(2)];
+}
+
+const allRocks = () => findAll('^', []);
+const allCurrents = () => findAll('~', []);
+const allShips = () => findAll('v', []);
+
+console.log("percentageReport()", percentageReport()); 
