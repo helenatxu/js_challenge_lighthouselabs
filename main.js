@@ -36,6 +36,11 @@ function convertColumn(coordinate) {
   return COLUMNS.indexOf(column);
 }
 
+function convertRow(coordinate) {
+  var row = parseInt(coordinate.split('')[1])-1;
+  return row;
+}
+
 function lightCell(coordinate) {
   var column = COLUMNS.indexOf(coordinate.split('')[0]);
   var row = parseInt(coordinate.split('')[1])-1;
@@ -121,4 +126,19 @@ function safetyReport() {
   return report;
 }
 
-console.log("safetyReport()", safetyReport()); 
+function calcDistance(a, b) {
+  var aX = convertRow(a);
+  var aY = convertColumn(a);
+  var bX = convertRow(b);
+  var bY = convertColumn(b);
+
+  var xx = Math.pow((bX - aX), 2);
+  var yy = Math.pow((bY - aY), 2);
+
+  return Math.sqrt(xx + yy).toFixed(2);
+}
+
+console.log("calcDistance(A1, A1)", calcDistance('A1', 'A1')); 
+console.log("calcDistance(A1, A3)", calcDistance('A1', 'A3')); 
+console.log("calcDistance(B1, B3)", calcDistance('B1', 'B3')); 
+console.log("calcDistance(C1, D2)", calcDistance('C1', 'D2')); 
