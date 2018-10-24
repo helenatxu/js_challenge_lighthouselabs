@@ -8,7 +8,7 @@ const GRID = [
 ["", "", "", "", "", "", "", "", "", ""],
 ["", "^", "~", "~", "", "", "", "^", "", ""],
 ["", "^", "", "~", "~", "", "", "", "", ""],
-["", "^", "", "", "~", "~", "", "", "", ""],
+["Z", "^", "", "", "~", "~", "", "", "", ""],
 ];
 
 const COLUMNS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
@@ -73,7 +73,7 @@ function lightColumn(columnNumber) {
 }
 
 const findAll = (obstacle,list) => {
-  GRID.forEach((e,f) => e.forEach((h,i) => { if(h===obstacle) list.push(COLUMNS[i]+(f+1)) }));
+  GRID.forEach((line,row) => line.forEach((cell,column) => { if(cell===obstacle) list.push(COLUMNS[column]+(row+1)) }));
   return list;
 };
 
@@ -107,4 +107,18 @@ const allRocks = () => findAll('^', []);
 const allCurrents = () => findAll('~', []);
 const allShips = () => findAll('v', []);
 
-console.log("percentageReport()", percentageReport()); 
+function dangerousPercentage(cell) {
+  if (cell === '^') return 100;
+  else if (cell === '~') return 50;
+  else return 0;
+}
+
+function safetyReport() {
+  var report = [];
+  GRID.forEach((line) => { 
+    report.push(line.map(x => dangerousPercentage(x)));
+  });
+  return report;
+}
+
+console.log("safetyReport()", safetyReport()); 
